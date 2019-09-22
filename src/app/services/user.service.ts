@@ -3,11 +3,14 @@ import{HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable} from 'rxjs';
 import { User } from '../models/user';
 import {global} from './global';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Injectable()
 export class UserService{
     public url : string;
     public headers : HttpHeaders;
+    public identity;
+    public token;
     constructor(
         public _http :HttpClient   
     ){
@@ -28,5 +31,27 @@ export class UserService{
         let json = JSON.stringify(user);
         let params = 'json='+json;
         return this._http.post(this.url+'login', params, {headers:this.headers});
+    }
+
+    getIdentity(){
+        let identity = JSON.parse(localStorage.getItem(
+            'identity'
+        ));
+        if (identity && identity != "undefined") {
+            this.identity = identity;
+        }else
+        this.identity = null;
+
+        return identity;
+    }
+
+    getToken(){
+        let token = localStorage.getItem('token');
+        if (token && token != "undefined") {
+            this.token = token;
+        }else{
+            this.token = null;
+        }
+        return this.token;
     }
 }

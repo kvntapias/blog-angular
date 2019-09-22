@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "../../models/user";
 import {  UserService } from '../../services/user.service';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -15,13 +16,18 @@ export class LoginComponent implements OnInit {
   public token;
   public identity;
   constructor(
-    private _userService : UserService
+    private _userService : UserService,
+    private _router : Router,
+    private _route : ActivatedRoute,
+    
   ) {
     this.pagetitle = "Acceder al sistema";
     this.user = new User(1,'', '', 'ROLE_USER', '','', '', '');
    }
 
   ngOnInit() {
+    //Cerrar sesion solo si llega sure por url
+    this.logout();
   }
 
   onSubmit(form){    
@@ -42,6 +48,7 @@ export class LoginComponent implements OnInit {
                     localStorage.setItem(
                       'identity', JSON.stringify(this.identity)
                     );
+                    this._router.navigate(['inicio']);
                 }, 
                 error => {
                   this.status = 'error';
@@ -56,5 +63,20 @@ export class LoginComponent implements OnInit {
         console.log(<any>error);
       }
     );    
+  }
+
+  logout(){
+    this._route.params.subscribe(params=> {
+        let logout = +params['sure'];
+        if (logout) {
+          localStorage.removeItem('identity');
+          localStorage.removeItem('token');
+
+          this.identity = null;
+          this.token = null;
+          //redireccion a index
+          this._router.navigate(['inicio']);
+        }
+    }); 
   }
 }
