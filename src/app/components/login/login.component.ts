@@ -11,19 +11,50 @@ import {  UserService } from '../../services/user.service';
 export class LoginComponent implements OnInit {
   public pagetitle : string;
   public user : User;
+  public status : string;
+  public token;
+  public identity;
   constructor(
     private _userService : UserService
   ) {
     this.pagetitle = "Acceder al sistema";
     this.user = new User(1,'', '', 'ROLE_USER', '','', '', '');
-
    }
 
   ngOnInit() {
   }
 
-  onSubmit(form){
-    
+  onSubmit(form){    
+    this._userService.signup(this.user).subscribe(
+      response=> {
+        //TOKEN
+        if (response.status != 'error') {
+          this.status = 'success';
+          this.token = response;
+              this._userService.signup(this.user, true).subscribe(
+                response=> {
+                    //IDENTIDAD DEL USUARIO
+                    this.identity = response;
+                    //persistir datos de login
+                    localStorage.setItem(
+                      'token', this.token
+                    );
+                    localStorage.setItem(
+                      'identity', JSON.stringify(this.identity)
+                    );
+                }, 
+                error => {
+                  this.status = 'error';
+                  console.log(<any>error);
+                }
+              );   
+        }else{
+          this.status = 'error';
+        }
+      }, error => {
+        this.status = 'error';
+        console.log(<any>error);
+      }
+    );    
   }
-
 }
