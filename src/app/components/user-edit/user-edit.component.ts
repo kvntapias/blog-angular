@@ -42,8 +42,10 @@ export class UserEditComponent implements OnInit {
       response => {
         if (response) {
           this.status = 'success';
-          for (var prop in response.changes) {
+          if (response.changes) {
+            for (var prop in response.changes) {
               this.user.prop = response.changes[prop];              
+            }
           }
           this.identity = this.user;
           localStorage.setItem('identity', JSON.stringify(this.identity));
