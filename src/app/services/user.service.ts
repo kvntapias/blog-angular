@@ -15,13 +15,13 @@ export class UserService{
         public _http :HttpClient   
     ){
         this.url = global.url
-        this.headers = new HttpHeaders().set('Content-Type', 'Application/x-www-form-urlencoded');
     }
 
     register(user): Observable<any>{
         let json = JSON.stringify(user);
         let params = 'json='+json;
-        return this._http.post(this.url+'register', params, {headers:this.headers});
+        let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        return this._http.post(this.url+'register', params, {headers:headers});
     }
 
     signup(user, getToken = null) : Observable<any>{
@@ -30,7 +30,16 @@ export class UserService{
         }
         let json = JSON.stringify(user);
         let params = 'json='+json;
-        return this._http.post(this.url+'login', params, {headers:this.headers});
+        let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        return this._http.post(this.url+'login', params, {headers:headers});
+    }
+
+    update(token, user){        
+        let json = JSON.stringify(user);
+        let params = 'json='+json;              
+        let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+                                        .set('Authorization', token);        
+        return this._http.put(this.url+'user/update', params, {headers:headers});
     }
 
     getIdentity(){
