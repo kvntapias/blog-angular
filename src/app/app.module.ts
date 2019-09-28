@@ -13,6 +13,8 @@ import { ErrorComponent } from './components/error/error.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { AngularFileUploaderModule } from "angular-file-uploader";
+
 
 
 @NgModule({
@@ -31,6 +33,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     HttpClientModule,
     FroalaEditorModule.forRoot(), 
     FroalaViewModule.forRoot(),
+    AngularFileUploaderModule
   ],
   providers: [AppRoutingProviders],
   bootstrap: [AppComponent]
