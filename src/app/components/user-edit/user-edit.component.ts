@@ -17,6 +17,7 @@ export class UserEditComponent implements OnInit {
   public identity;
   public token;
   public status;
+  public url;
   public froala_options: Object = {
     charCounterCount: true,
     toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
@@ -57,7 +58,8 @@ export class UserEditComponent implements OnInit {
                       '',
                       this.identity.description,
                       this.identity.image
-      );
+    );
+    this.url = global.url;
   }
 
   ngOnInit() {

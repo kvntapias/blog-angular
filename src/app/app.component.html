@@ -29,6 +29,9 @@
       </ul>
 
       <ul *ngIf="identity && identity.name" class="navbar-nav navbar-right">
+        <li class="nav-item" *ngIf="identity && identity.image" >
+            <img class="avatar"  src="{{url+'user/avatar/'+identity.image}}" alt="">
+        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{identity.name + ' ' + identity.surname}}
