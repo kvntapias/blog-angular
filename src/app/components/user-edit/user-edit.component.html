@@ -4,12 +4,12 @@
         Modifica tus datos personales
     </p>
 
-    <!-- <div *ngIf="status=='success'" class="alert alert-success col-md-5">
-        El registro se ha completado con exito, <a [routerLink]="['/login']" routerLinkActive="router-link-active" >Accede aqui</a>
+    <div *ngIf="status=='success'" class="alert alert-success col-md-5">
+        Datos actualizados con exito
     </div>
     <div *ngIf="status=='error'" class="alert alert-danger col-md-5">
-        El registro no se oudo completar correctamente
-    </div> -->
+        Error al actualizar los datos, intente nuevamente.
+    </div>
 
     <!--Formulario de ajustes-->
     <form class="col-md-5 ml-0 pl-0" method="PUT" #userEditform="ngForm" (ngSubmit)="onSubmit(userEditform)">
@@ -42,9 +42,10 @@
 
         <div class="form-group">
             <label for="description">Descripcion: </label>
-            <input type="text" name="description" id="description" class="form-control" 
-            #description="ngModel" 
-            [(ngModel)]="user.description">
+            <textarea 
+            name="description"
+            class="form-control" 
+            #description="ngModel" [(ngModel)]="user.description"></textarea>
         </div>
 
         <div class="form-group">
