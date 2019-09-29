@@ -7,3 +7,8 @@
     height: 50px;
     border-radius: 50%;
   }
+
+.post-image{
+  height: 200px;
+  overflow: hidden;
+}

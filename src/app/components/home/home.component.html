@@ -11,7 +11,13 @@
             </div>
             <div class="card-body">
                 <!--imagen del post-->
-                
+                <div class="post-image w-100" *ngIf="post.image">
+                    <img src="{{url + 'post/image/'+ post.image }}" class="w-100">
+                </div>
+
+                <div class="post-image w-100" *ngIf="!post.image">
+                    <img src="https://via.placeholder.com/400x250" class="w-100">
+                </div>
                 <!--botones-->
             </div>
         </article>
