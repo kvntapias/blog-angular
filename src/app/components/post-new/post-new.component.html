@@ -2,6 +2,12 @@
     <h1>{{pagetitle}}</h1>
     <p>Añadir un nuevo post al blog</p>
     <!--mensajes de alerta -->
+    <div *ngIf="status=='success'" class="alert alert-success col-md-5">
+        Datos guardados con exito
+    </div>
+    <div *ngIf="status=='error'" class="alert alert-danger col-md-5">
+        Error al guardar los datos, intente nuevamente.
+    </div>
 
     <!--Formulario de crear post-->
     <form #postNew="ngForm" (ngSubmit)="onSubmit(postNew)" class="col-md-5 ml-0 pl-0">
