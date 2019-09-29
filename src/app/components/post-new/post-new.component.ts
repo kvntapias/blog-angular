@@ -6,7 +6,6 @@ import { Post } from "../../models/post";
 import {global} from '../../services/global';
 import { PostService } from "../../services/post.service";
 
-
 @Component({
   selector: 'app-post-new',
   templateUrl: './post-new.component.html',
