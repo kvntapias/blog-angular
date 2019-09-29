@@ -4,12 +4,12 @@
         Crear nueva categoria en el blog
     </p>
 
-    <!-- <div *ngIf="status=='success'" class="alert alert-success col-md-5">
-        Datos actualizados con exito
+    <div *ngIf="status=='success'" class="alert alert-success col-md-5">
+        La categoría dse ha creado correctamente
     </div>
     <div *ngIf="status=='error'" class="alert alert-danger col-md-5">
-        Error al actualizar los datos, intente nuevamente.
-    </div> -->
+        No se pudo crear la categoía
+    </div>
 
     <!--form crear categoria-->
     <form class="col-md-5" #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)">
