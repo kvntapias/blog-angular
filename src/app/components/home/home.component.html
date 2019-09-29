@@ -19,6 +19,13 @@
                     <img src="https://via.placeholder.com/400x250" class="w-100">
                 </div>
                 <!--botones-->
+                <div class="post-buttons mt-3">
+                    <a class="btn btn-success ml-2" [routerLink]="['/inicio']">Ver</a>
+                    <span *ngIf="identity && identity.sub == post.user_id">
+                        <a class="btn btn-warning ml-2" [routerLink]="['/inicio']">Editar</a>
+                        <a class="btn btn-danger ml-2" [routerLink]="['/inicio']">Borrar</a>
+                    </span>
+                </div>
             </div>
         </article>
     </div>
