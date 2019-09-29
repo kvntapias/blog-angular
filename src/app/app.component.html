@@ -38,11 +38,11 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item">Crear entrada</a>
-              <a class="dropdown-item">Crear Categoria</a>
+              <a [routerLink]="['/crear-categoria']" class="dropdown-item">Crear Categoria</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item">Mi perfil</a>
               <a class="dropdown-item" [routerLink]="['/ajustes']">Ajustes</a>
-              <a class="dropdown-item" [routerLink]="['/logout/1']" routerLinkActive="router-link-active" >Salir</a>
+              <a class="dropdown-item" [routerLink]="['/logout/1']">Salir</a>
             </div>
           </li>
       </ul>
