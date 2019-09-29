@@ -37,7 +37,7 @@
                 {{identity.name + ' ' + identity.surname}}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item">Crear entrada</a>
+              <a [routerLink]="['/crear-post']"  class="dropdown-item">Crear entrada</a>
               <a [routerLink]="['/crear-categoria']" class="dropdown-item">Crear Categoria</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item">Mi perfil</a>

@@ -15,6 +15,7 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { AngularFileUploaderModule } from "angular-file-uploader";
 import { CategoryNewComponent } from './components/category-new/category-new.component';
+import { PostNewComponent } from './components/post-new/post-new.component';
 
 
 
@@ -26,7 +27,8 @@ import { CategoryNewComponent } from './components/category-new/category-new.com
     HomeComponent,
     ErrorComponent,
     UserEditComponent,
-    CategoryNewComponent
+    CategoryNewComponent,
+    PostNewComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,48 @@
+<div class="col-md-12 mt-3">
+    <h1>{{pagetitle}}</h1>
+    <p>Añadir un nuevo post al blog</p>
+    <!--mensajes de alerta -->
+
+    <!--Formulario de crear post-->
+    <form #postNew="ngForm" (ngSubmit)="onSubmit(postNew)" class="col-md-5 ml-0 pl-0">
+        <div class="form-group">
+            <label for="title">Titulo: </label>
+            <input required #title="ngModel" [(ngModel)]="post.title" type="text" name="title" id="title" class="form-control">
+            <small *ngIf="!title.valid && title.touched" class="invalid-feedback d-block">
+                El titulo no es valido
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="content">Contenido: </label>
+            <textarea [froalaEditor]="froala_options" required name="content" #content="ngModel" [(ngModel)]="post.content"></textarea>
+            <small *ngIf="!content.valid && content.touched" class="invalid-feedback d-block">
+                El contenido no es valido
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="category_id">Categoría: </label>
+            <select required class="form-control" #category="ngModel" [(ngModel)]="post.category_id" name="category_id" id="category_id">
+                <option *ngFor="let category of categories" value="{{category.id}}">
+                    {{ category.name }}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="image">Imagen :</label>
+            <angular-file-uploader 
+            [config]="afuConfig"
+            [resetUpload]=resetVar
+            (ApiResponse)="imageUpload($event)">
+            </angular-file-uploader>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Guardar" class="btn btn-success"
+            [disabled]="postNew.invalid">
+        </div>
+        <br>
+    </form>
+</div>
