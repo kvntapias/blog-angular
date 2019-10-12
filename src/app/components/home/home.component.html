@@ -22,8 +22,10 @@
                 <div class="post-buttons mt-3">
                     <a class="btn btn-success ml-2" [routerLink]="['/entrada', post.id]">Ver</a>
                     <span *ngIf="identity && identity.sub == post.user_id">
-                        <a class="btn btn-warning ml-2" [routerLink]="['/inicio']">Editar</a>
-                        <a class="btn btn-danger ml-2" [routerLink]="['/inicio']">Borrar</a>
+                        <a class="btn btn-warning ml-2" [routerLink]="['/editar-entrada', post.id]">Editar</a>
+                        <a class="btn btn-danger ml-2"
+                        (click)="deletePost(post.id)"
+                        >Borrar</a>
                     </span>
                 </div>
             </div>

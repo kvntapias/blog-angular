@@ -7,12 +7,19 @@ import {global} from '../../services/global';
 import { PostService } from "../../services/post.service";
 
 @Component({
-  selector: 'app-post-new',
-  templateUrl: './post-new.component.html',
-  styleUrls: ['./post-new.component.css'],
+  selector: 'app-post-edit',
+  templateUrl: '../post-new/post-new.component.html',
   providers : [UserService,CategoryService, PostService]
 })
-export class PostNewComponent implements OnInit {
+export class PostEditComponent implements OnInit {
+  
+  public pagetitle  : string;
+  public identity;
+  public token;
+  public post : Post;
+  public categories;
+  public status;
+  public is_edit : boolean
 
   constructor(
     private _route : ActivatedRoute,
@@ -21,17 +28,11 @@ export class PostNewComponent implements OnInit {
     private _categoryService : CategoryService,
     private _postService : PostService
   ) { 
-    this.pagetitle = 'Crear entrada';
+    this.pagetitle = 'Editar entrada';
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.is_edit = true;
   }
-
-  public pagetitle  : string;
-  public identity;
-  public token;
-  public post : Post;
-  public categories;
-  public status;
 
   public froala_options: Object = {
     charCounterCount: true,
@@ -62,6 +63,7 @@ export class PostNewComponent implements OnInit {
   ngOnInit() {
     this.getCategories();
     this.post = new Post(1, this.identity.sub, 1, '', '', null, null);
+    this.getPost();
   }
 
   getCategories(){
@@ -83,12 +85,13 @@ export class PostNewComponent implements OnInit {
   }
 
   onSubmit(form){
-   this._postService.create(this.token, this.post).subscribe(
+   this._postService.update(this.token, this.post, this.post.id).subscribe(
      res => {
       if (res.status == 'success') {
-        this.post = res.post;
-        this.status = 'success'
-        this._router.navigate(['inicio']);
+        this.status = 'success';
+        console.log(res.post);
+        
+        this._router.navigate(['/entrada', this.post.id]);
       }else{
         this.status = 'error';
       }
@@ -98,5 +101,27 @@ export class PostNewComponent implements OnInit {
        this.status = 'error';
      }
    );   
+  }
+
+  getPost(){
+    //obtener id del post de la url
+    this._route.params.subscribe(params => {
+      let id = +params['id'];
+      
+      //sacar datos del post
+      this._postService.getPost(id).subscribe(
+        res => {
+          if (res.status == 'success') {
+            this.post = res.posts;            
+          }else{
+            this._router.navigate['/inicio'];
+          }
+        },
+        err => {
+          console.log(err);
+          this._router.navigate['/inicio'];
+        }
+      );
+    });
   }
 }

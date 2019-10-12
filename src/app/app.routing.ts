@@ -12,7 +12,7 @@ import{ CategoryNewComponent } from './components/category-new/category-new.comp
 
 import { PostNewComponent } from "./components/post-new/post-new.component";
 import { PostDetailComponent } from "./components/post-detail/post-detail.component";
-
+import { PostEditComponent } from "./components/post-edit/post-edit.component";
 
 //DEFINIR RUTAS
 const appRoutes : Routes = [
@@ -25,6 +25,9 @@ const appRoutes : Routes = [
     {path : 'crear-categoria', component : CategoryNewComponent},
     {path: 'crear-post', component : PostNewComponent },
     {path: 'entrada/:id', component : PostDetailComponent },
+    {path: 'editar-entrada/:id', component : PostEditComponent },
+
+    
     {path : '**', component : ErrorComponent}
 ];
 //EXPORTAR CONFIG
