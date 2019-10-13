@@ -9,5 +9,12 @@
         {{post.category.name}} - {{post.user.name + ' '+ post.user.surname }}
     </p>
     <p [innerHtml]="post.content"></p>
+
+    <br>
+    <div>
+        Creado por <a [routerLink]="['/perfil', post.user.id]">
+        
+        {{post.user.name + ' ' +post.user.surname }}</a>
+    </div>
 </div>
 
