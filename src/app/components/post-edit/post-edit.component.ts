@@ -36,6 +36,7 @@ export class PostEditComponent implements OnInit {
 
   public froala_options: Object = {
     charCounterCount: true,
+    language: 'es',
     toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
     toolbarButtonsXS: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
     toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
@@ -112,7 +113,11 @@ export class PostEditComponent implements OnInit {
       this._postService.getPost(id).subscribe(
         res => {
           if (res.status == 'success') {
-            this.post = res.posts;            
+            this.post = res.posts;    
+            
+            if (this.post.user_id != this.identity.sub) {
+              this._router.navigate['/inicio'];
+            }
           }else{
             this._router.navigate['/inicio'];
           }
