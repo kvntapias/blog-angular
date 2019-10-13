@@ -19,7 +19,8 @@ export class PostEditComponent implements OnInit {
   public post : Post;
   public categories;
   public status;
-  public is_edit : boolean
+  public is_edit : boolean;
+  public url: string
 
   constructor(
     private _route : ActivatedRoute,
@@ -32,6 +33,7 @@ export class PostEditComponent implements OnInit {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.is_edit = true;
+    this.url = global.url;
   }
 
   public froala_options: Object = {
