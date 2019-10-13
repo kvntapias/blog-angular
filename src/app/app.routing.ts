@@ -14,6 +14,7 @@ import { PostNewComponent } from "./components/post-new/post-new.component";
 import { PostDetailComponent } from "./components/post-detail/post-detail.component";
 import { PostEditComponent } from "./components/post-edit/post-edit.component";
 import { CategoryDetailComponent } from "./components/category-detail/category-detail.component";
+import { IndentityGuard } from './services/identity.guard';
 
 //DEFINIR RUTAS
 const appRoutes : Routes = [
@@ -22,11 +23,11 @@ const appRoutes : Routes = [
     {path : 'login', component : LoginComponent},
     {path : 'logout/:sure', component : LoginComponent},
     {path : 'register', component : RegisterComponent},
-    {path : 'ajustes', component : UserEditComponent},
-    {path : 'crear-categoria', component : CategoryNewComponent},
-    {path: 'crear-post', component : PostNewComponent },
+    {path : 'ajustes', component : UserEditComponent, canActivate : [IndentityGuard]},
+    {path : 'crear-categoria', component : CategoryNewComponent, canActivate : [IndentityGuard]},
+    {path: 'crear-post', component : PostNewComponent , canActivate : [IndentityGuard]},
     {path: 'entrada/:id', component : PostDetailComponent },
-    {path: 'editar-entrada/:id', component : PostEditComponent },
+    {path: 'editar-entrada/:id', component : PostEditComponent, canActivate : [IndentityGuard] },
     {path: 'categoria/:id', component : CategoryDetailComponent },
     
     {path : '**', component : ErrorComponent}

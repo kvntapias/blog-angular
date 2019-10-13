@@ -19,7 +19,8 @@ import { PostNewComponent } from './components/post-new/post-new.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import { CategoryDetailComponent } from './components/category-detail/category-detail.component';
-
+import { IndentityGuard } from './services/identity.guard';
+import { UserService } from './services/user.service';
 
 
 @NgModule({
@@ -45,7 +46,11 @@ import { CategoryDetailComponent } from './components/category-detail/category-d
     FroalaViewModule.forRoot(),
     AngularFileUploaderModule
   ],
-  providers: [AppRoutingProviders],
+  providers: [
+    AppRoutingProviders, 
+    IndentityGuard, 
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
